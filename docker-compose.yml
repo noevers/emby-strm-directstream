@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  nginx-emby:
+    image: nginx:1.27.1-njs
+    container_name: nginx-emby
+    restart: always
+    network_mode: host
+    volumes:
+      - /opt/emby2alist/conf.d:/etc/nginx/conf.d
+      - /opt/emby2alist/log:/var/log/nginx
+      - /opt/emby2alist/embyCache:/var/cache/nginx/emby
+      # 请根据实际情况修改宿主机 STRM 媒体目录路径
+      - /home/jellyfin-stack/alist/data/strm:/media:ro
